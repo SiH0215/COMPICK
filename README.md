@@ -48,6 +48,10 @@ flowchart LR
 | 결제 | Toss Payments SDK · API | 결제창 요청, 서버 승인·취소 및 주문 금액 대조 |
 | 이메일 | JavaMailSender · SMTP | 회원가입·계정 찾기·비밀번호 재설정 인증번호 발송 |
 
+## 데이터 출처
+
+- PC 부품 데이터: [PCPartPicker Parts Dataset](https://huggingface.co/datasets/Doshiba/pcpartpicker-parts-dataset) — PCPartPicker에서 수집한 상품·사양 데이터의 공개 데이터셋입니다.
+
 ## 상세 문서
 
 - **[USERFLOW](docs/PAGES.md)** — 화면구현 및 사용자흐름.
