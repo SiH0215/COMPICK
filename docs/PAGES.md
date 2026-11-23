@@ -2,7 +2,11 @@
 
 [프로젝트 소개](../README.md) · [기능과 구현 구조](FEATURES.md)
 
+<br>
+
 COMPICK은 부품을 직접 선택하는 사용자와 추천을 참고하는 사용자가 같은 주문 흐름으로 이어지도록 구성한 조립 PC 쇼핑몰입니다. 화면은 **탐색 → 견적 구성 → 장바구니 → 주문·결제 → 주문 관리** 순서로 연결하였습니다.
+
+<br>
 
 ## 1. 홈 — 원하는 방식으로 쇼핑 시작
 
@@ -14,11 +18,15 @@ COMPICK은 부품을 직접 선택하는 사용자와 추천을 참고하는 사
 - **연결:** 부품 목록 → 상품 확인 / 직접 견적 → 부품 구성 / 추천·AI 견적 → 구성안 확인
 - **구현:** [홈 컨트롤러](../src/main/java/com/boot/compick/home/controller/HomeController.java), [홈 템플릿](../src/main/resources/templates/home/index.html)
 
+<br>
+
 ## 2. 부품 쇼핑 — 조건으로 좁히고 상품 확인
 
 ![부품 쇼핑](images/compick-products.jpg)
 
 CPU, CPU 쿨러, 메인보드, RAM, 그래픽카드, 저장장치, 파워, 케이스의 8개 카테고리로 상품을 나누었습니다. 제조사·가격·카테고리별 상세 사양을 조합하고 인기순·가격순으로 정렬하도록 구현하였습니다. 상품 상세 정보는 모달로 확인하고 장바구니에 담도록 구성하였습니다.
+
+<br>
 
 첫 화면의 상품은 서버에서 렌더링하고, 이후 카테고리·필터 변경은 JavaScript에서 API를 호출하여 목록을 갱신하도록 하였습니다. 카테고리별로 필요한 사양이 달라 필터 선택지도 서버에서 조회하도록 구성하였습니다.
 
@@ -26,17 +34,23 @@ CPU, CPU 쿨러, 메인보드, RAM, 그래픽카드, 저장장치, 파워, 케�
 - **화면 동작:** 카테고리 선택 → 필터 설정 → 목록 갱신 → 상세 모달 → 장바구니 담기
 - **구현:** [상품 화면](../src/main/resources/templates/shopping/products.html), [목록 제어](../src/main/resources/static/js/products.js), [상세 모달](../src/main/resources/static/js/product-modal.js)
 
+<br>
+
 ## 3. 직접 견적 — 부품 선택과 구성 확인을 한 화면에서
 
 ![직접 견적에서 CPU를 선택한 화면](images/compick-builder.jpg)
 
 상품 목록과 내 견적서를 함께 배치하여 선택한 부품, 수량, 예상 소비전력, 총금액을 확인하도록 구현하였습니다. 부품을 바꾸면 견적서와 호환성 안내를 갱신하고, RAM과 저장장치는 여러 상품을 선택하도록 하였습니다.
 
+<br>
+
 CPU·메인보드 소켓, RAM 규격, 케이스 크기와 그래픽카드 길이 등을 비교하여 화면에 문제를 표시하도록 구현하였습니다. 조립 요청 또는 직접 조립을 선택하고 필수 구성을 채운 뒤 견적을 장바구니에 담도록 하였습니다. 화면의 호환성 안내와 서버의 저장 검증 범위는 [기능 문서](FEATURES.md#2-직접-견적과-호환성-안내)에 구분하여 정리하였습니다.
 
 - **경로:** `/quotes/new`
 - **화면 동작:** 카테고리별 부품 선택 → 구성·호환성 확인 → 조립 방식 선택 → 견적 저장 및 장바구니 담기
 - **구현:** [견적 화면](../src/main/resources/templates/shopping/quote-new.html), [견적 구성 JavaScript](../src/main/resources/static/js/quote-builder.js)
+
+<br>
 
 ## 4. 추천 견적 — 완성된 구성안에서 시작
 
@@ -45,20 +59,28 @@ CPU·메인보드 소켓, RAM 규격, 케이스 크기와 그래픽카드 길이
 - **경로:** `/preset`, `/preset/{quoteId}`
 - **구현:** [추천 목록](../src/main/resources/templates/shopping/preset-list.html), [추천 상세](../src/main/resources/templates/shopping/preset-detail.html), [상세 화면 제어](../src/main/resources/static/js/preset-detail.js)
 
+<br>
+
 ## 5. AI 견적 — 예산과 용도를 자연어로 입력
 
 ![AI 견적 입력](images/compick-ai.jpg)
 
 예산, 게임·작업 용도, 원하는 성능 등을 문장으로 입력하도록 하였습니다. 빠른 조건 버튼으로 요구사항 작성을 돕고, 추천 요청 후에는 추천 설명·실제 상품 목록·합계 금액을 표시하도록 구성하였습니다.
 
+<br>
+
 추천 결과는 Gemini가 반환한 상품 식별값을 서버의 상품 데이터와 연결하여 구성하였습니다. 로그인한 사용자는 결과를 자신의 견적으로 저장하여 장바구니로 이어가도록 하였으며, 추천 실패와 견적 저장 실패를 구분하여 안내하도록 하였습니다.
 
 - **경로:** `/ai-quotes`
 - **구현:** [AI 견적 화면](../src/main/resources/templates/shopping/recommendation/ai-quote.html), [입력 화면 제어](../src/main/resources/static/shopping/js/ai-recommendation.js)
 
+<br>
+
 ## 6. 장바구니·주문서 — 개별 부품과 견적을 함께 구매
 
 장바구니에서는 개별 상품과 여러 부품으로 구성된 견적을 구분하여 표시하고, 수량 변경·선택·삭제를 지원하도록 하였습니다. 선택한 항목만 주문서로 이어지도록 구성하였습니다.
+
+<br>
 
 주문서에서는 주문 대상과 배송지를 확인하고, 새 배송지를 등록하거나 기존 배송지를 선택하도록 하였습니다. 결제 버튼을 누르면 서버에서 결제 대기 주문을 생성한 뒤, 서버가 반환한 주문 번호와 금액으로 Toss Payments 결제창을 요청하도록 구현하였습니다.
 
@@ -69,6 +91,8 @@ CPU·메인보드 소켓, RAM 규격, 케이스 크기와 그래픽카드 길이
 | 결제 결과 | `/payments/success`, `/payments/fail` | 서버 승인 결과 또는 실패 사유 안내 |
 
 구현: [장바구니 화면](../src/main/resources/templates/cart/index.html), [장바구니 제어](../src/main/resources/static/js/cart.js), [주문 화면](../src/main/resources/templates/order/new.html), [주문·결제 요청](../src/main/resources/static/js/order.js)
+
+<br>
 
 ## 7. 마이페이지 — 구매 이후와 계정 관리
 
@@ -85,6 +109,8 @@ CPU·메인보드 소켓, RAM 규격, 케이스 크기와 그래픽카드 길이
 
 구현: [회원 화면 컨트롤러](../src/main/java/com/boot/compick/member/controller/MemberController.java), [계정 복구](../src/main/java/com/boot/compick/member/controller/RecoveryController.java), [주문 상세 제어](../src/main/resources/static/js/order-detail.js)
 
+<br>
+
 ## 8. 관리자 — 쇼핑 데이터와 주문 운영
 
 관리자 전용 화면에서 판매 상품, 추천 견적, 회원, 주문, AI 추천 기록을 관리하도록 구현하였습니다. 메뉴를 숨기는 데 그치지 않고 서버에서 관리자 권한을 검사하도록 구성하였습니다.
@@ -99,6 +125,8 @@ CPU·메인보드 소켓, RAM 규격, 케이스 크기와 그래픽카드 길이
 | AI 로그 | `/admin/ai-logs` | 저장된 추천 요청과 결과 확인 |
 
 구현: [관리자 컨트롤러](../src/main/java/com/boot/compick/admin/AdminController.java)
+
+<br>
 
 ## 캡처 범위
 
