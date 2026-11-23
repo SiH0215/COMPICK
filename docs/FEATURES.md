@@ -2,8 +2,6 @@
 
 [프로젝트 소개](../README.md) · [화면과 사용자 흐름](PAGES.md)
 
-<br>
-
 ## 아키텍처
 
 Spring MVC와 Thymeleaf로 화면을 제공하고, 필터·견적·장바구니처럼 사용자 조작이 잦은 영역은 JavaScript의 Fetch API로 갱신하도록 구성하였습니다. 별도의 SPA 서버를 두지 않은 서버 렌더링 기반 구조이며, 화면을 반환하는 컨트롤러와 JSON을 반환하는 API 컨트롤러를 구분하였습니다.
@@ -30,8 +28,6 @@ flowchart LR
 | 서비스 | 도메인 규칙, 소유자 확인, 저장·상태 변경 | [주문 서비스](../src/main/java/com/boot/compick/order/service/OrderService.java) |
 | 저장소 | 엔티티 조회·저장, 조건 검색 | [상품 저장소](../src/main/java/com/boot/compick/product/repository/ProductRepository.java) |
 
-<br>
-
 ## 1. 상품 탐색과 카테고리별 필터
 
 **사용자 동작:** 카테고리와 제조사·가격·사양 조건을 선택하면 해당 조건의 상품 목록을 표시하도록 구현하였습니다.
@@ -42,11 +38,7 @@ flowchart LR
 
 예를 들어 메인보드에서는 소켓·메모리 규격·폼팩터를, 파워에서는 정격 출력·효율을 필터 후보로 제공하도록 구성하였습니다. 인기순은 `ratingCount`와 등록일을 기준으로 정렬하였습니다.
 
-<br>
-
 구현: [ProductService](../src/main/java/com/boot/compick/product/service/ProductService.java), [검색 조건](../src/main/java/com/boot/compick/product/repository/ProductSpecifications.java)
-
-<br>
 
 ## 2. 직접 견적과 호환성 안내
 
@@ -62,15 +54,9 @@ flowchart LR
 
 RAM과 저장장치는 다중 선택을 허용하고, 다른 카테고리는 한 상품을 선택하도록 하였습니다. 서버의 RAM 슬롯 검증은 상품 1개를 RAM 2개 구성으로 계산하도록 작성하였습니다.
 
-<br>
-
 **검증 범위:** 화면의 호환성 검사는 상품에 해당 사양 값이 존재할 때 수행하는 안내입니다. 서버 검증이 화면의 모든 호환성 규칙을 재검사하는 구조는 아니며, 실제 부품의 모든 장착 가능성을 보장하지는 않습니다.
 
-<br>
-
 구현: [브라우저 견적 처리](../src/main/resources/static/js/quote-builder.js), [서버 선택 검증](../src/main/java/com/boot/compick/quote/service/QuoteSelectionValidator.java), [견적 저장](../src/main/java/com/boot/compick/quote/service/QuoteService.java)
-
-<br>
 
 ## 3. 추천 견적과 AI 견적의 구매 연결
 
@@ -95,25 +81,15 @@ sequenceDiagram
 
 서버 시작 시 추천용 상품 CSV를 Gemini에 업로드하고 시스템 프롬프트를 읽도록 구성하였습니다. 추천 결과의 합계는 연결된 상품 가격으로 계산하도록 하였습니다. 로그인한 사용자의 결과는 견적과 추천 기록으로 저장하여 장바구니·최근 견적 이력으로 연결하였습니다.
 
-<br>
-
 입력 검증 오류, 빈 응답, 상품 식별값 누락, 응답 해석 실패를 처리하도록 하였습니다. 추천 요청은 성공했지만 견적 저장이 실패한 경우에는 추천 내용과 별도로 장바구니 연계 오류를 표시하도록 하였습니다. 공개 추천 견적 외의 개인 견적은 소유자를 확인한 뒤 장바구니에 추가하도록 하였습니다.
 
-<br>
-
 구현: [AI 컨트롤러](../src/main/java/com/boot/compick/shopping/recommendation/controller/AiRecommendationController.java), [Gemini 서비스](../src/main/java/com/boot/compick/shopping/recommendation/service/GeminiRecommendationService.java), [AI 견적 저장](../src/main/java/com/boot/compick/quote/service/AiQuoteService.java), [추천 프롬프트](../src/main/resources/shopping/ai/system-prompt.txt)
-
-<br>
 
 ## 4. 장바구니에서 주문 데이터로 전환
 
 **프론트엔드:** 상품과 견적의 수량·선택 상태·삭제 요청을 API로 전달하도록 하였습니다. 주문서에서는 장바구니와 배송지를 병렬 조회하고, 선택 항목과 배송지 상태에 따라 결제 버튼을 제어하도록 하였습니다. 상태 변경 요청에는 페이지에 포함된 CSRF 토큰을 헤더로 전달하도록 구현하였습니다.
 
-<br>
-
 **백엔드:** 주문 생성 시 브라우저가 보낸 가격을 그대로 저장하지 않고, 로그인 회원의 선택된 장바구니 항목과 서버 상품 가격을 조회하여 주문 금액을 계산하도록 하였습니다. 배송지는 ID만 확인하는 대신 로그인 회원 소유인지 함께 조회하도록 하였습니다.
-
-<br>
 
 **저장 구조:** 개별 상품과 견적을 주문 그룹으로 구분하고, 견적에 포함된 부품은 그룹의 주문 항목으로 저장하도록 하였습니다. 주문 시점의 상품명·단가·수량과 수령인·주소를 주문 데이터에 복사하여 이후 조회에 사용하도록 구성하였습니다.
 
@@ -129,13 +105,9 @@ flowchart LR
 
 구현: [CartService](../src/main/java/com/boot/compick/cart/service/CartService.java), [OrderService](../src/main/java/com/boot/compick/order/service/OrderService.java), [주문 화면 제어](../src/main/resources/static/js/order.js)
 
-<br>
-
 ## 5. 결제 승인·재고·주문 상태
 
 결제창 요청과 서버 승인을 분리하였습니다. 주문서에서 결제 대기 주문을 생성한 뒤 서버 응답의 주문 번호·최종 금액으로 Toss Payments SDK를 호출하도록 하였습니다.
-
-<br>
 
 서버의 승인 처리 순서는 다음과 같이 구현하였습니다.
 
@@ -147,15 +119,9 @@ flowchart LR
 
 서비스의 DB 변경에는 Spring 트랜잭션을 적용하였습니다. 주문의 재고 차감·복원 표시를 확인하여 같은 주문에서 중복 재고 처리를 방지하도록 하였습니다. 이는 외부 결제 API와 DB를 하나의 분산 트랜잭션으로 처리한다는 의미는 아닙니다.
 
-<br>
-
 주문 취소는 주문 상태를 확인한 뒤 승인된 결제가 있으면 취소 API를 호출하고 재고를 복원하도록 하였습니다. 반품은 배송 중·배송 완료 주문에서 허용하도록 하였습니다. 현재 반품 코드는 **주문 금액의 50% 환불을 목표로 이미 환불한 금액을 차감하는 로직**이므로 일반적인 전액 환불 정책과 구분하였습니다.
 
-<br>
-
 구현: [결제 서비스](../src/main/java/com/boot/compick/payment/service/PaymentService.java), [Toss 연동](../src/main/java/com/boot/compick/payment/service/TossPaymentService.java), [결제 결과 컨트롤러](../src/main/java/com/boot/compick/payment/controller/PaymentController.java)
-
-<br>
 
 ## 6. 인증·계정 복구·개인 데이터 접근
 
@@ -172,17 +138,11 @@ flowchart LR
 
 구현: [SecurityConfig](../src/main/java/com/boot/compick/config/SecurityConfig.java), [이메일 인증](../src/main/java/com/boot/compick/member/service/EmailVerificationService.java), [회원 서비스](../src/main/java/com/boot/compick/member/service/MemberService.java), [배송지 서비스](../src/main/java/com/boot/compick/member/service/AddressService.java)
 
-<br>
-
 ## 7. 관리자와 판매 데이터 관리
 
 상품 등록·수정, 추천 견적 구성·삭제, 회원 조회·정보 변경, 주문 상태 변경, AI 추천 로그 조회를 관리자 화면에 연결하였습니다. 고객 화면에서 사용하는 상품·추천 견적 데이터를 관리자 화면에서 관리하도록 하였으며, 관리자 URL 접근은 Spring Security에서 제한하였습니다.
 
-<br>
-
 구현: [관리자 컨트롤러](../src/main/java/com/boot/compick/admin/AdminController.java), [추천 견적 관리 서비스](../src/main/java/com/boot/compick/quote/service/PresetAdminService.java)
-
-<br>
 
 ## 확인 범위
 
