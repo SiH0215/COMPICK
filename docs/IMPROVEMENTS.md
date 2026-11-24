@@ -63,7 +63,7 @@ flowchart TD
 
 | 측정 조건 | 내용 |
 |---|---|
-| 비교 코드 | `76ac6ee`의 루트 코드와 `reforege` 코드 |
+| 비교 코드 | 측정 당시 커밋 `76ac6ee`의 루트·개선 코드 |
 | 환경 | 동일 Windows PC, Java 21.0.10, Spring Boot 3.5.16, H2 2.3.232 Oracle 모드 |
 | 부하 | **DB 연결 2개, 서로 다른 상품·주문 8건 동시 승인, 모의 승인 지연 500ms** |
 | 표본 | 버전별 준비 요청 4건 후 5회 반복, 각 40건 측정 |
@@ -81,7 +81,7 @@ flowchart TD
 DB 연결이 승인 대기에 묶이지 않으면서 다른 요청의 대기 시간이 줄었습니다. **위 수치는 DB 연결 부족 상황을 재현한 모의 부하 결과이며, 실제 Toss Payments·Oracle·HTTP 전체의 응답속도 측정값은 아닙니다.** P95는 요청의 95%가 끝난 시간으로, 40개 표본 중 정렬 후 38번째 값을 사용하였습니다.
 
 측정 원본: [기존](benchmarks/payment-before.json) · [개선](benchmarks/payment-after.json) · [집계](benchmarks/payment-summary.json)  
-측정 코드: [Java 서비스 비교](../reforege/tools/ComparisonLauncher.java) · [격리 실행 도구](../reforege/tools/benchmark_payments.py)
+측정 코드: [Java 서비스 비교](../revamp/tools/ComparisonLauncher.java) · [격리 실행 도구](../revamp/tools/benchmark_payments.py)
 
 ### 화면 변경
 
@@ -163,7 +163,7 @@ CSRF 헤더와 JSON 요청 형식, 서버 오류 안내를 공통 처리로 모�
 
 ### 변경 내용
 
-이후 데이터 갱신에 사용할 [전처리 도구](../reforege/tools/prepare_products.py)를 추가하였습니다.
+이후 데이터 갱신에 사용할 [전처리 도구](../revamp/tools/prepare_products.py)를 추가하였습니다.
 
 | 단계 | 처리 |
 |---|---|
@@ -230,4 +230,4 @@ CSRF 헤더와 JSON 요청 형식, 서버 오류 안내를 공통 처리로 모�
 
 Java 테스트는 H2의 실제 트랜잭션·행 잠금을 사용하고 결제·Gemini 호출은 모킹하였습니다. Oracle 실서버와 실제 결제사 연동의 성능·보안 전체를 검증한 결과로 표현하지 않았습니다. 기존 회원별 소유권 검사·관리자 권한·CSRF 구성을 새로 도입한 보안 기능으로 기재하지 않았습니다.
 
-DB 변경은 결제 처리 기한·반품 완료 시각 추가와 결제 식별값 길이 확장입니다. 기존 DB용 [변경 SQL](../reforege/docs/sqls/compick_reforege_migration.sql)과 신규 구축 스키마를 정리하고, 기존 반품 데이터는 과거 환불 내역과 대조하여 이관하도록 주석을 남겼습니다.
+DB 변경은 결제 처리 기한·반품 완료 시각 추가와 결제 식별값 길이 확장입니다. 기존 DB용 [변경 SQL](../revamp/docs/sqls/compick_revamp_migration.sql)과 신규 구축 스키마를 정리하고, 기존 반품 데이터는 과거 환불 내역과 대조하여 이관하도록 주석을 남겼습니다.
