@@ -1,0 +1,28 @@
+{
+  "before": {
+    "sample_count": 40,
+    "mean_ms": 1312.3454525,
+    "median_ms": 1308.8213,
+    "p95_ms": 2106.1687,
+    "mean_batch_ms": 2098.20934,
+    "gateway_calls_inside_db_transaction": 40,
+    "successful_orders": 40,
+    "verified_stock_rows": 40
+  },
+  "after": {
+    "sample_count": 40,
+    "mean_ms": 536.7731825,
+    "median_ms": 537.1353,
+    "p95_ms": 551.6104,
+    "mean_batch_ms": 548.40882,
+    "gateway_calls_inside_db_transaction": 0,
+    "successful_orders": 40,
+    "verified_stock_rows": 40
+  },
+  "reductions_percent": {
+    "mean_ms": 59.09817941019612,
+    "median_ms": 58.96037908307268,
+    "p95_ms": 73.80977126855983,
+    "mean_batch_ms": 73.86300739658323
+  }
+}

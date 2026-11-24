@@ -330,16 +330,16 @@ class OrderStockConcurrencyTests {
           String login = "u" + UUID.randomUUID().toString().replace("-", "");
           var member =
               members.save(
-                  new Member(login, "unused", "Tester", login + "@example.com", "010-0000-0000"));
+                  new Member(login, "unused", "김O현", login + "@example.com", "010-0000-0000"));
           var address =
               addresses.save(
                   new Address(
                       member,
                       "Home",
-                      "Tester",
+                      "김O현",
                       "010-0000-0000",
                       "00000",
-                      "Test address",
+                      "서울특별시 강동구",
                       "",
                       true));
           var cart = carts.save(CartEntity.create(member.getId()));
@@ -357,10 +357,10 @@ class OrderStockConcurrencyTests {
                   "TEST" + UUID.randomUUID().toString().replace("-", ""),
                   ids.size() * 100L,
                   0,
-                  "Tester",
+                  "김O현",
                   "010-0000-0000",
                   "00000",
-                  "Test address",
+                  "서울특별시 강동구",
                   "",
                   "");
           ids.forEach(id -> order.addProductGroup(id, "Test product", 100, 1));

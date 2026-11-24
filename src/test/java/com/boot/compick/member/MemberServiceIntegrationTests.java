@@ -52,9 +52,10 @@ class MemberServiceIntegrationTests {
         assertThat(member.getPasswordHash()).isNotEqualTo(join.getPassword());
 
         ProfileForm profile = memberService.getProfile("compick01");
-        profile.setName("김컴픽"); profile.setPhone("010-2222-3333");
+        profile.setName("김O현"); profile.setPhone("010-2222-3333");
         memberService.updateProfile("compick01", profile);
-        assertThat(memberService.findActiveByLoginId("compick01").getName()).isEqualTo("김컴픽");
+        assertThat(memberService.findActiveByLoginId("compick01").getName()).isEqualTo("김O현");
+        assertThat(memberService.findActiveByLoginId("compick01").getPhone()).isEqualTo("010-2222-3333");
         assertThat(memberService.findActiveByLoginId("compick01").getEmail()).isEqualTo("member1@compick.com");
 
         PasswordForm password = new PasswordForm();
@@ -107,7 +108,7 @@ class MemberServiceIntegrationTests {
                         .param("password", "Abc!1234")
                         .param("passwordConfirm", "Abc!1234")
                         .param("email", "autologin@compick.com")
-                        .param("name", "자동로그인")
+                        .param("name", "김O현")
                         .param("phone", "010-1234-5678")
                         .param("termsAccepted", "true")
                         .param("privacyAccepted", "true"))
@@ -135,7 +136,7 @@ class MemberServiceIntegrationTests {
     @Test
     void googleLoginCreatesAndReusesTheSameMember() throws Exception {
         SocialAccountService.GoogleLoginResult firstLogin = socialAccountService.loginGoogleWithResult(
-                "google-sub-123", "GoogleUser@Example.com", "구글회원");
+                "google-sub-123", "GoogleUser@Example.com", "김O현");
         Member first = firstLogin.member();
         assertThat(firstLogin.credentialSetupRequired()).isTrue();
 
@@ -145,7 +146,7 @@ class MemberServiceIntegrationTests {
 
         socialAccountService.completeSocialSignup(first.getLoginId(), "Abc!1234");
         SocialAccountService.GoogleLoginResult secondLogin = socialAccountService.loginGoogleWithResult(
-                "google-sub-123", "googleuser@example.com", "구글회원");
+                "google-sub-123", "googleuser@example.com", "김O현");
         Member second = secondLogin.member();
         assertThat(first.getId()).isEqualTo(second.getId());
         assertThat(first.getLoginId()).startsWith("google_");
@@ -172,14 +173,14 @@ class MemberServiceIntegrationTests {
     private JoinForm joinForm(String loginId, String email) {
         JoinForm form = new JoinForm(); form.setLoginId(loginId); form.setEmail(email);
         form.setPassword("Abc!1234"); form.setPasswordConfirm("Abc!1234");
-        form.setName("테스트회원"); form.setPhone("010-1111-2222"); form.setTermsAccepted(true);
+        form.setName("김O현"); form.setPhone("010-1111-2222"); form.setTermsAccepted(true);
         return form;
     }
 
     private AddressForm addressForm(String name, boolean isDefault) {
-        AddressForm form = new AddressForm(); form.setAddressName(name); form.setRecipientName("테스트회원");
+        AddressForm form = new AddressForm(); form.setAddressName(name); form.setRecipientName("김O현");
         form.setRecipientPhone("010-1111-2222"); form.setZipCode("06236");
-        form.setBasicAddress("서울특별시 강남구 테헤란로"); form.setDetailAddress("123"); form.setDefaultAddress(isDefault);
+        form.setBasicAddress("서울특별시 강동구"); form.setDetailAddress(""); form.setDefaultAddress(isDefault);
         return form;
     }
 

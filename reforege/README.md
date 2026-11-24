@@ -59,4 +59,4 @@ flowchart LR
 
 ## 개선사항
 
-[교육 수료 후 진행한 추가 개선](docs/IMPROVEMENTS.md)
+[교육 수료 후 진행한 추가 개선](docs/IMPROVEMENTS.md) · [화면 비교·개선효과](docs/IMPROVEMENT_RESULTS.md)

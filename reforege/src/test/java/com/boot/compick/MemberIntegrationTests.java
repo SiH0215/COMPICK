@@ -96,7 +96,7 @@ class MemberIntegrationTests {
 				.param("password", "Password!1")
 				.param("passwordConfirm", "Password!1")
 				.param("email", "member@compick.test")
-				.param("name", "컴픽회원")
+				.param("name", "김O현")
 				.param("nickname", "컴픽이")
 				.param("phone", "010-1234-5678")
 				.param("termsAccepted", "true")
@@ -151,11 +151,11 @@ class MemberIntegrationTests {
 				.content("""
 					{
 						"addressName": "우리 집",
-						"recipientName": "컴픽회원",
+						"recipientName": "김O현",
 						"phone": "010-1234-5678",
 						"zipCode": "06236",
-						"address1": "서울특별시 강남구 테헤란로",
-						"address2": "101호",
+						"address1": "서울특별시 강동구",
+						"address2": "",
 						"isDefault": true
 					}
 					"""))
@@ -170,7 +170,7 @@ class MemberIntegrationTests {
 			socialAccountService.loginGoogle(
 				"google-subject-123",
 				"GoogleUser@compick.test",
-				"구글회원"
+				"김O현"
 			);
 		socialAccountService.setSocialPassword(
 			first.member().getLoginId(),
@@ -180,7 +180,7 @@ class MemberIntegrationTests {
 			socialAccountService.loginGoogle(
 				"google-subject-123",
 				"googleuser@compick.test",
-				"구글회원"
+				"김O현"
 			);
 
 		assertEquals(first.member().getId(), second.member().getId());
@@ -199,7 +199,7 @@ class MemberIntegrationTests {
 			socialAccountService.loginGoogle(
 				"withdraw-google-subject",
 				"withdraw@compick.test",
-				"탈퇴회원"
+				"김O현"
 			);
 		String loginId = result.member().getLoginId();
 		socialAccountService.setSocialPassword(loginId, "Password!1");
@@ -221,7 +221,7 @@ class MemberIntegrationTests {
 		Member member = memberRepository.save(new Member(
 			"phoneMissing",
 			passwordEncoder.encode("Password!1"),
-			"전화번호미등록",
+			"김O현",
 			"phone-missing@compick.test",
 			"미등록회원",
 			"미등록"
@@ -246,7 +246,7 @@ class MemberIntegrationTests {
 		return memberRepository.save(new Member(
 			loginId,
 			passwordEncoder.encode("Password!1"),
-			"컴픽회원",
+			"김O현",
 			email,
 			"컴픽이",
 			"010-1234-5678"

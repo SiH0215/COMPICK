@@ -1,0 +1,133 @@
+{
+  "label" : "after",
+  "gateway_delay_ms" : 500,
+  "pool_size" : 2,
+  "parallel_requests" : 8,
+  "warmup" : 4,
+  "rounds" : 5,
+  "samples" : [ {
+    "order" : "BENCH4",
+    "elapsed_ms" : 527.5509
+  }, {
+    "order" : "BENCH5",
+    "elapsed_ms" : 542.0379
+  }, {
+    "order" : "BENCH6",
+    "elapsed_ms" : 560.0787
+  }, {
+    "order" : "BENCH7",
+    "elapsed_ms" : 551.6104
+  }, {
+    "order" : "BENCH8",
+    "elapsed_ms" : 551.5871
+  }, {
+    "order" : "BENCH9",
+    "elapsed_ms" : 527.4013
+  }, {
+    "order" : "BENCH10",
+    "elapsed_ms" : 559.8026
+  }, {
+    "order" : "BENCH11",
+    "elapsed_ms" : 541.7281
+  }, {
+    "order" : "BENCH12",
+    "elapsed_ms" : 519.0677
+  }, {
+    "order" : "BENCH13",
+    "elapsed_ms" : 519.2315
+  }, {
+    "order" : "BENCH14",
+    "elapsed_ms" : 548.8807
+  }, {
+    "order" : "BENCH15",
+    "elapsed_ms" : 549.131
+  }, {
+    "order" : "BENCH16",
+    "elapsed_ms" : 541.9547
+  }, {
+    "order" : "BENCH17",
+    "elapsed_ms" : 542.4236
+  }, {
+    "order" : "BENCH18",
+    "elapsed_ms" : 533.5222
+  }, {
+    "order" : "BENCH19",
+    "elapsed_ms" : 533.4571
+  }, {
+    "order" : "BENCH20",
+    "elapsed_ms" : 542.9328
+  }, {
+    "order" : "BENCH21",
+    "elapsed_ms" : 523.7225
+  }, {
+    "order" : "BENCH22",
+    "elapsed_ms" : 529.5372
+  }, {
+    "order" : "BENCH23",
+    "elapsed_ms" : 523.6955
+  }, {
+    "order" : "BENCH24",
+    "elapsed_ms" : 536.9777
+  }, {
+    "order" : "BENCH25",
+    "elapsed_ms" : 529.4951
+  }, {
+    "order" : "BENCH26",
+    "elapsed_ms" : 536.8256
+  }, {
+    "order" : "BENCH27",
+    "elapsed_ms" : 542.7239
+  }, {
+    "order" : "BENCH28",
+    "elapsed_ms" : 527.3917
+  }, {
+    "order" : "BENCH29",
+    "elapsed_ms" : 532.177
+  }, {
+    "order" : "BENCH30",
+    "elapsed_ms" : 525.8985
+  }, {
+    "order" : "BENCH31",
+    "elapsed_ms" : 537.2929
+  }, {
+    "order" : "BENCH32",
+    "elapsed_ms" : 537.4971
+  }, {
+    "order" : "BENCH33",
+    "elapsed_ms" : 531.9108
+  }, {
+    "order" : "BENCH34",
+    "elapsed_ms" : 544.1661
+  }, {
+    "order" : "BENCH35",
+    "elapsed_ms" : 544.1365
+  }, {
+    "order" : "BENCH36",
+    "elapsed_ms" : 529.2921
+  }, {
+    "order" : "BENCH37",
+    "elapsed_ms" : 524.1956
+  }, {
+    "order" : "BENCH38",
+    "elapsed_ms" : 524.306
+  }, {
+    "order" : "BENCH39",
+    "elapsed_ms" : 529.223
+  }, {
+    "order" : "BENCH40",
+    "elapsed_ms" : 544.6669
+  }, {
+    "order" : "BENCH41",
+    "elapsed_ms" : 539.4342
+  }, {
+    "order" : "BENCH42",
+    "elapsed_ms" : 544.5785
+  }, {
+    "order" : "BENCH43",
+    "elapsed_ms" : 539.3846
+  } ],
+  "batch_elapsed_ms" : [ 560.2639, 549.3211, 542.9899, 544.5896, 544.8796 ],
+  "gateway_calls_inside_db_transaction" : 0,
+  "successful_orders" : 40,
+  "verified_stock_rows" : 40
+}
