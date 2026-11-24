@@ -63,7 +63,8 @@ flowchart LR
 - **[기능 구현](docs/FEATURES.md)** — 화면·API·서비스·데이터의 연결, 처리 순서
 
 ## 개선사항
-교육 수료 이후 아래의 사항들을 반영하여 개선 및 보완하였습니다. [개선사항](docs/IMPROVEMENTS.md)
+교육 수료 이후 아래의 사항들을 반영하여 개선 및 보완하였습니다. <br>
+[개선사항](docs/IMPROVEMENTS.md)
 
 | 항목 | 내용 |
 |---|---|
