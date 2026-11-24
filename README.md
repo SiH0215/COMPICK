@@ -55,8 +55,6 @@ flowchart LR
 
 - PC 부품 데이터: [PCPartPicker Parts Dataset](https://huggingface.co/datasets/Doshiba/pcpartpicker-parts-dataset) — PCPartPicker에서 수집한 상품·사양 데이터의 공개 데이터셋을 전처리/가공하여 구축하였습니다.
 
-## 개선 방향
-
 ## 상세 문서
 
 - **[USERFLOW](docs/PAGES.md)** — 화면구현 및 사용자흐름.

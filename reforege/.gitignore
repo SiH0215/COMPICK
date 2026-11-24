@@ -1,0 +1,13 @@
+target/
+uploads/
+.vscode/
+.github/
+.env
+.env.*
+*.log
+src/main/resources/application.properties
+
+docs/sqls/compick_create_admin.sql
+
+tools/__pycache__/
+data/generated/
