@@ -143,7 +143,3 @@ flowchart LR
 상품 등록·수정, 추천 견적 구성·삭제, 회원 조회·정보 변경, 주문 상태 변경, AI 추천 로그 조회를 관리자 화면에 연결하였습니다. 고객 화면에서 사용하는 상품·추천 견적 데이터를 관리자 화면에서 관리하도록 하였으며, 관리자 URL 접근은 Spring Security에서 제한하였습니다.
 
 구현: [관리자 컨트롤러](../src/main/java/com/boot/compick/admin/AdminController.java), [추천 견적 관리 서비스](../src/main/java/com/boot/compick/quote/service/PresetAdminService.java)
-
-## 확인 범위
-
-이 문서는 현재 저장된 소스의 처리 흐름과 실제 실행한 공개 화면을 기준으로 작성하였습니다. 캡처에는 별도의 H2 데이터베이스와 프로젝트 상품 CSV를 사용하였습니다. Oracle 전용 사양 필터 쿼리, 외부 로그인·메일·Gemini·결제 연동 전체를 이번 작업에서 통합 검증하지 않았으며, 성능 수치와 개인별 기여도는 기재하지 않았습니다.
