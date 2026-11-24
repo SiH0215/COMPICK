@@ -45,6 +45,14 @@ COMPICK은 부품을 직접 선택하는 사용자와 추천을 참고하는 사
 - **경로:** `/members/signup`
 - **구현:** [회원가입 화면](../src/main/resources/templates/member/join.html), [회원 화면 제어](../src/main/resources/static/js/member.js), [가입 처리](../src/main/java/com/boot/compick/member/controller/MemberController.java)
 
+### 이메일 인증
+
+| 인증 메일 본문 | 사이트 인증 완료 |
+|---|---|
+| ![실제 발송된 인증 메일](images/compick-email-message.jpg) | ![이메일 인증 완료 화면](images/compick-email-verified.jpg) |
+
+지정한 주소로 인증 메일을 실제 발송하고, 메일의 인증번호를 입력하여 인증 완료를 확인하였습니다. 메일 이미지는 발신 계정의 보낸 메일에서 본문을 캡처하였으며, 이메일 주소와 인증번호는 가렸습니다.
+
 ## 4. 아이디 찾기·비밀번호 재설정
 
 | 아이디 찾기 | 비밀번호 재설정 |
