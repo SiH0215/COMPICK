@@ -69,7 +69,7 @@ flowchart LR
 
 ## 상세 문서
 
-- **[개선사항](docs/IMPROVEMENTS.md)** - 부트캠프 끝난 이후 추가 개선사항 반영
+- **[개선사항](docs/IMPROVEMENTS.md)** - 교육 수료 후 진행한 추가 개선
 
 - **[USERFLOW](docs/PAGES.md)** — 화면구현 및 사용자흐름.
 - **[기능 구현](docs/FEATURES.md)** — 화면·API·서비스·데이터의 연결, 처리 순서
