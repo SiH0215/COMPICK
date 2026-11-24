@@ -51,9 +51,8 @@ public final class AdminPrivacyMasking {
 		return region.toString();
 	}
 
-	/** 배송지 섹션처럼 "이 상세 주소는 가려져 있다"는 걸 명시해야 할 때 쓴다. */
+	/** 배송지에 시/도·구/군만 표시한다. */
 	public static String maskAddress(String basicAddress) {
-		String region = maskAddressRegion(basicAddress);
-		return region == null ? null : region + " 이하 비공개";
+		return maskAddressRegion(basicAddress);
 	}
 }
