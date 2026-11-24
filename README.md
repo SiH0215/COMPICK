@@ -62,7 +62,7 @@ flowchart LR
 
 ## 개선사항
 교육 수료 이후 아래의 사항들을 반영하여 개선 및 보완하였습니다. <br>
-[개선사항](docs/IMPROVEMENTS.md) · [화면 비교·개선효과](docs/IMPROVEMENT_RESULTS.md) · [개선 코드](reforege)
+[개선사항](docs/IMPROVEMENTS.md) · [개선 코드](reforege)
 
 | 항목 | 내용 |
 |---|---|
